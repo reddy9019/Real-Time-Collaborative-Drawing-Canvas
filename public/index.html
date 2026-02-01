@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Collaborative Canvas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <header>
+            <div class="logo">
+                <span class="icon">🎨</span>
+                <h1>Collaborative Canvas</h1>
+            </div>
+            <div class="header-status">
+                <div class="header-actions">
+                    <button id="header-undo" class="header-btn" title="Undo (Local)">↩️</button>
+                    <button id="header-redo" class="header-btn" title="Redo (Local)">↪️</button>
+                </div>
+                <div id="recording-status" class="recording-badge">
+                    <span class="dot"></span> Recording
+                </div>
+                <div id="user-count" class="badge">0 users online</div>
+            </div>
+        </header>
+
+        <main>
+            <aside id="toolbar">
+                <div class="tool-group">
+                    <label>Colors</label>
+                    <div class="color-grid">
+                        <button class="color-btn active" style="background-color: #ffffff"
+                            data-color="#ffffff"></button>
+                        <button class="color-btn" style="background-color: #ff4757" data-color="#ff4757"></button>
+                        <button class="color-btn" style="background-color: #2ed573" data-color="#2ed573"></button>
+                        <button class="color-btn" style="background-color: #1e90ff" data-color="#1e90ff"></button>
+                        <button class="color-btn" style="background-color: #ffa502" data-color="#ffa502"></button>
+                        <button class="color-btn" style="background-color: #eccc68" data-color="#eccc68"></button>
+                        <button class="color-btn" style="background-color: #70a1ff" data-color="#70a1ff"></button>
+                        <input type="color" id="custom-color" value="#ffffff">
+                    </div>
+                </div>
+
+                <div class="tool-group">
+                    <label>Brush Size</label>
+                    <input type="range" id="brush-size" min="1" max="50" value="5">
+                    <span id="brush-size-val">5px</span>
+                </div>
+
+                <div class="tool-group">
+                    <button id="eraser-btn" class="action-btn">🧽 Eraser</button>
+                    <button id="undo-btn" class="action-btn">↩️ Undo</button>
+                    <button id="replay-btn" class="action-btn success">▶️ Replay</button>
+                    <button id="clear-btn" class="action-btn danger">🗑️ Clear All</button>
+                </div>
+
+                <div class="tool-group users-list">
+                    <label>Users</label>
+                    <div id="users-container">
+                        <!-- Users will be injected here -->
+                    </div>
+                </div>
+            </aside>
+
+            <div id="canvas-container">
+                <canvas id="drawing-canvas"></canvas>
+                <div id="cursors-layer"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
