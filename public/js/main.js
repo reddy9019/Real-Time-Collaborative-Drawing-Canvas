@@ -2,7 +2,7 @@ import { CanvasEngine } from './canvas.js';
 import { SocketClient } from './websocket.js';
 
 const canvas = new CanvasEngine('drawing-canvas', 'cursors-layer');
-const socket = new SocketClient(window.location.origin);
+const socket = new SocketClient("https://real-time-collaborative-drawing-canvas-515l.onrender.com");
 
 const colorBtns = document.querySelectorAll('.color-btn');
 const customColorInput = document.getElementById('custom-color');
