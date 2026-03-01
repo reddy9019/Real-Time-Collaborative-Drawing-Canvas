@@ -1,3 +1,4 @@
+const io = window.io;
 export class SocketClient {
     constructor(uri) {
         this.socket = io(uri);
